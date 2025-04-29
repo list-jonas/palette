@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Maximize, Minimize } from "lucide-react"; // Import icons
 
 import colorsData from "./colors.json";
 import SidebarPanel from "../components/SidebarPanel";
 import ColorDisplay from "../components/ColorDisplay";
 import CustomPaletteForm from "../components/CustomPaletteForm";
+import { Button } from "@/components/ui/button";
 
 // Define the Palette type
 interface Palette {
@@ -32,7 +34,8 @@ export default function Home() {
   });
   const [currentPaletteIndex, setCurrentPaletteIndex] = useState(0);
   const [currentStyle, setCurrentStyle] = useState(STYLES[0]);
-  const [isPanelOpen, setIsPanelOpen] = useState(true); // State for Sheet component
+  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false); // State for fullscreen mode
 
   // State for custom palette creation
   const [customPaletteName, setCustomPaletteName] = useState("");
@@ -151,6 +154,83 @@ export default function Home() {
     }
   };
 
+  // Fullscreen functions
+  const enterFullscreen = () => {
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen().catch((err) => {
+        console.error(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+        );
+      });
+    } else if ((element as any).mozRequestFullScreen) {
+      /* Firefox */
+      (element as any).mozRequestFullScreen();
+    } else if ((element as any).webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
+      (element as any).webkitRequestFullscreen();
+    } else if ((element as any).msRequestFullscreen) {
+      /* IE/Edge */
+      (element as any).msRequestFullscreen();
+    }
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if ((document as any).mozCancelFullScreen) {
+      /* Firefox */
+      (document as any).mozCancelFullScreen();
+    } else if ((document as any).webkitExitFullscreen) {
+      /* Chrome, Safari & Opera */
+      (document as any).webkitExitFullscreen();
+    } else if ((document as any).msExitFullscreen) {
+      /* IE/Edge */
+      (document as any).msExitFullscreen();
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      enterFullscreen();
+    } else {
+      exitFullscreen();
+    }
+  };
+
+  // Effect to listen for fullscreen changes (e.g., ESC key)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(
+        !!document.fullscreenElement ||
+          !!(document as any).webkitFullscreenElement ||
+          !!(document as any).mozFullScreenElement ||
+          !!(document as any).msFullscreenElement
+      );
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // Safari, Chrome
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange); // Firefox
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange); // IE/Edge
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "MSFullscreenChange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
+
   const currentBgColor = palettes[currentPaletteIndex]?.bgColor || "#ffffff";
   const currentDisplayColors = palettes[currentPaletteIndex]?.colors || [];
 
@@ -159,30 +239,46 @@ export default function Home() {
       className="relative min-h-screen transition-colors duration-300 overflow-hidden"
       style={{ backgroundColor: currentBgColor }}
     >
-      {/* Sidebar Panel Component using shadcn/ui Sheet */}
-      <SidebarPanel
-        isOpen={isPanelOpen}
-        onOpenChange={setIsPanelOpen}
-        styles={STYLES}
-        currentStyle={currentStyle}
-        palettes={palettes}
-        currentPaletteIndex={currentPaletteIndex}
-        onStyleChange={setCurrentStyle}
-        onPaletteChange={setCurrentPaletteIndex}
-      >
-        <CustomPaletteForm
-          customPaletteName={customPaletteName}
-          setCustomPaletteName={setCustomPaletteName}
-          customBgColor={customBgColor}
-          setCustomBgColor={setCustomBgColor}
-          customColors={customColors}
-          handleCustomColorChange={handleCustomColorChange}
-          removeCustomColorInput={removeCustomColorInput}
-          addCustomColorInput={addCustomColorInput}
-          saveCustomPalette={saveCustomPalette}
-        />
-      </SidebarPanel>
+      {/* Container for top-right buttons */}
+      {!isFullscreen && (
+        <div className="fixed left-4 top-4 z-50 flex space-x-2">
+          {/* Fullscreen Toggle Button */}
+          <Button variant="ghost" onClick={toggleFullscreen} size="icon">
+            {isFullscreen ? (
+              <Minimize className="w-6 h-6" />
+            ) : (
+              <Maximize className="w-6 h-6" />
+            )}
+          </Button>
+          {/* Sidebar Panel Trigger - Now inside the conditional container */}
+          <SidebarPanel
+            isOpen={isPanelOpen}
+            onOpenChange={setIsPanelOpen}
+            styles={STYLES}
+            currentStyle={currentStyle}
+            palettes={palettes}
+            currentPaletteIndex={currentPaletteIndex}
+            onStyleChange={setCurrentStyle}
+            onPaletteChange={setCurrentPaletteIndex}
+          >
+            {/* Pass the trigger button explicitly if needed or adjust SidebarPanel */}
+            {/* The default trigger is now part of SidebarPanel, ensure it's styled correctly or passed */}
+            <CustomPaletteForm
+              customPaletteName={customPaletteName}
+              setCustomPaletteName={setCustomPaletteName}
+              customBgColor={customBgColor}
+              setCustomBgColor={setCustomBgColor}
+              customColors={customColors}
+              handleCustomColorChange={handleCustomColorChange}
+              removeCustomColorInput={removeCustomColorInput}
+              addCustomColorInput={addCustomColorInput}
+              saveCustomPalette={saveCustomPalette}
+            />
+          </SidebarPanel>
+        </div>
+      )}
 
+      {/* Rest of the page content */}
       <div className="flex flex-col items-center justify-center min-h-screen p-8 pt-16">
         <ColorDisplay
           colors={currentDisplayColors}
