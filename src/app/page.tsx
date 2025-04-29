@@ -8,6 +8,7 @@ import SidebarPanel from "../components/SidebarPanel";
 import ColorDisplay from "../components/ColorDisplay";
 import CustomPaletteForm from "../components/CustomPaletteForm";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 // Define the Palette type
 interface Palette {
@@ -77,6 +78,8 @@ export default function Home() {
     const updatedPalettes = [...palettes, newPalette];
     setPalettes(updatedPalettes);
     localStorage.setItem("custom-palettes", JSON.stringify(updatedPalettes));
+
+    toast.success("Custom palette saved!");
 
     setCurrentPaletteIndex(updatedPalettes.length - 1);
 

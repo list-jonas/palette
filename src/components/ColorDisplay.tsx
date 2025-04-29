@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
 
 interface ColorDisplayProps {
   colors: string[];
@@ -19,6 +20,13 @@ export default function ColorDisplay({
   style,
   getStyles,
 }: ColorDisplayProps) {
+  const copyToClipboard = (color: string) => {
+    navigator.clipboard.writeText(color).then(() => {
+      toast.success("Color copied to clipboard");
+      console.log(`Copied ${color} to clipboard`);
+    });
+  };
+
   return (
     <div className="flex flex-wrap justify-center items-center gap-6">
       <AnimatePresence>
@@ -37,6 +45,9 @@ export default function ColorDisplay({
               stiffness: 100,
             }}
             whileHover={{ scale: 1.1 }}
+            onClick={() => copyToClipboard(color)}
+            className="cursor-pointer"
+            title={`Click to copy ${color}`}
           />
         ))}
       </AnimatePresence>
