@@ -103,9 +103,21 @@ export default function SidebarPanel({
                         currentPaletteIndex === index ? "secondary" : "ghost"
                       }
                       onClick={() => onPaletteChange(index)}
-                      className="w-full justify-start"
+                      className="w-full relative flex-row items-start p-2 justify-between"
                     >
-                      {palette.name}
+                      <span className="font-medium">{palette.name}</span>
+                      <div
+                        className="absolute top-0.5 right-0.5 flex space-x-1 p-2 rounded-md"
+                        style={{ backgroundColor: palette.bgColor }}
+                      >
+                        {palette.colors.slice(0, 5).map((color, i) => (
+                          <div
+                            key={i}
+                            className="w-4 h-4 rounded"
+                            style={{ backgroundColor: color }}
+                          />
+                        ))}
+                      </div>
                     </Button>
                   ))}
                 </div>

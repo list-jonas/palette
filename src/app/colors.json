@@ -14,6 +14,61 @@
       "name": "Earth Tones",
       "bgColor": "#F5F5DC",
       "colors": ["#8B4513", "#A0522D", "#CD853F", "#D2B48C", "#BC8F8F"]
+    },
+    {
+      "name": "Vibrant Pop",
+      "bgColor": "#FFF0F5",
+      "colors": ["#FF1493", "#FF4500", "#32CD32", "#1E90FF", "#FFD700"]
+    },
+    {
+      "name": "Monochrome Greys",
+      "bgColor": "#F0F0F0",
+      "colors": ["#333333", "#555555", "#777777", "#AAAAAA", "#DDDDDD"]
+    },
+    {
+      "name": "Pastel Dreams",
+      "bgColor": "#FFF8F0",
+      "colors": ["#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFC9", "#BAE1FF"]
+    },
+    {
+      "name": "Neon Night",
+      "bgColor": "#0F0F0F",
+      "colors": ["#39FF14", "#FF3131", "#00FFFF", "#FF6EC7", "#FFFF33"]
+    },
+    {
+      "name": "Dark Mode Essentials",
+      "bgColor": "#121212",
+      "colors": ["#1F1F1F", "#2C2C2C", "#3D3D3D", "#4F4F4F", "#606060"]
+    },
+    {
+      "name": "Forest Vibes",
+      "bgColor": "#E6EFE9",
+      "colors": ["#2E4600", "#486B00", "#A2C523", "#DDEECC", "#5B7B48"]
+    },
+    {
+      "name": "Ocean Depths",
+      "bgColor": "#E0F7FA",
+      "colors": ["#012E40", "#025E73", "#0388A6", "#66C7D9", "#B2EBF2"]
+    },
+    {
+      "name": "Sunset Glow",
+      "bgColor": "#FFF2E0",
+      "colors": ["#FF5E5B", "#FF8E72", "#FFB26B", "#FFD07E", "#FFE8B0"]
+    },
+    {
+      "name": "Minimal Neutrals",
+      "bgColor": "#FAFAFA",
+      "colors": ["#2E2E2E", "#5A5A5A", "#B0B0B0", "#DCDCDC", "#F5F5F5"]
+    },
+    {
+      "name": "Lavender Fields",
+      "bgColor": "#F9F0FF",
+      "colors": ["#7F5A83", "#A28BA6", "#D6C6E1", "#F3E8FF", "#EADDF2"]
+    },
+    {
+      "name": "Autumn Leaves",
+      "bgColor": "#FEF5E7",
+      "colors": ["#8B0000", "#D2691E", "#FF8C00", "#FFD700", "#F5DEB3"]
     }
   ]
 }
