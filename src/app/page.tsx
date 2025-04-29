@@ -1,103 +1,180 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+
+import colorsData from "./colors.json";
+import SidebarPanel from "../components/SidebarPanel";
+import ColorDisplay from "../components/ColorDisplay";
+import CustomPaletteForm from "../components/CustomPaletteForm";
+
+// Define the Palette type
+interface Palette {
+  name: string;
+  bgColor: string;
+  colors: string[];
+}
+
+const STYLES = [
+  "circles",
+  "cubes",
+  "medium-circles",
+  "big-circles",
+  "big-pills",
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [palettes, setPalettes] = useState<Palette[]>(colorsData.palettes);
+  const [currentPaletteIndex, setCurrentPaletteIndex] = useState(0);
+  const [currentStyle, setCurrentStyle] = useState(STYLES[0]);
+  const [isPanelOpen, setIsPanelOpen] = useState(true); // State for Sheet component
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  // State for custom palette creation
+  const [customPaletteName, setCustomPaletteName] = useState("");
+  const [customBgColor, setCustomBgColor] = useState("#ffffff");
+  const [customColors, setCustomColors] = useState<string[]>(["#000000"]);
+
+  // Function to add a new color input field
+  const addCustomColorInput = () => {
+    setCustomColors([...customColors, "#000000"]);
+  };
+
+  // Function to update a specific color input
+  const handleCustomColorChange = (index: number, value: string) => {
+    const newColors = [...customColors];
+    newColors[index] = value;
+    setCustomColors(newColors);
+  };
+
+  // Function to remove a color input field
+  const removeCustomColorInput = (index: number) => {
+    if (customColors.length > 1) {
+      // Keep at least one color
+      const newColors = customColors.filter((_, i) => i !== index);
+      setCustomColors(newColors);
+    }
+  };
+
+  // Function to save the custom palette
+  const saveCustomPalette = () => {
+    if (!customPaletteName.trim()) {
+      alert("Please enter a name for your custom palette.");
+      return;
+    }
+    const newPalette: Palette = {
+      name: customPaletteName,
+      bgColor: customBgColor,
+      colors: customColors,
+    };
+    const updatedPalettes = [...palettes, newPalette];
+    setPalettes(updatedPalettes);
+    // Optionally select the newly added palette
+    setCurrentPaletteIndex(updatedPalettes.length - 1);
+    // Clear the form
+    setCustomPaletteName("");
+    setCustomBgColor("#ffffff");
+    setCustomColors(["#000000"]);
+    // Maybe close the panel or give feedback
+    alert("Custom palette saved!");
+    // setIsPanelOpen(false); // Optionally close panel after saving
+  };
+
+  // Ensure currentPaletteIndex is valid when palettes change
+  useEffect(() => {
+    if (currentPaletteIndex >= palettes.length) {
+      setCurrentPaletteIndex(palettes.length > 0 ? 0 : -1); // Reset if out of bounds
+    }
+  }, [palettes, currentPaletteIndex]);
+
+  const getStyles = (style: string, color: string, index?: number) => {
+    switch (style) {
+      case "circles":
+        return {
+          zIndex: index ? index + 10 : undefined,
+          width: "50px",
+          height: "50px",
+          borderRadius: "50%",
+          backgroundColor: color,
+        };
+      case "cubes":
+        return {
+          zIndex: index ? index + 10 : undefined,
+          width: "50px",
+          height: "50px",
+          backgroundColor: color,
+        };
+      case "medium-circles":
+        return {
+          zIndex: index ? index + 10 : undefined,
+          width: "80px",
+          height: "80px",
+          borderRadius: "50%",
+          backgroundColor: color,
+        };
+      case "big-circles":
+        return {
+          zIndex: index ? index + 10 : undefined,
+          marginLeft: "-5vw",
+          marginRight: "-5vw",
+          width: "30vh",
+          aspectRatio: "1/1",
+          borderRadius: "50%",
+          backgroundColor: color,
+        };
+      case "big-pills":
+        return {
+          zIndex: index ? index + 10 : undefined,
+          marginLeft: "-5vw",
+          marginRight: "-5vw",
+          width: "20vw",
+          height: "80vh",
+          borderRadius: "10vw",
+          backgroundColor: color,
+        };
+      default:
+        return {};
+    }
+  };
+
+  const currentBgColor = palettes[currentPaletteIndex]?.bgColor || "#ffffff";
+  const currentDisplayColors = palettes[currentPaletteIndex]?.colors || [];
+
+  return (
+    <div
+      className="relative min-h-screen transition-colors duration-300 overflow-hidden"
+      style={{ backgroundColor: currentBgColor }}
+    >
+      {/* Sidebar Panel Component using shadcn/ui Sheet */}
+      <SidebarPanel
+        isOpen={isPanelOpen}
+        onOpenChange={setIsPanelOpen}
+        styles={STYLES}
+        currentStyle={currentStyle}
+        palettes={palettes}
+        currentPaletteIndex={currentPaletteIndex}
+        onStyleChange={setCurrentStyle}
+        onPaletteChange={setCurrentPaletteIndex}
+      >
+        <CustomPaletteForm
+          customPaletteName={customPaletteName}
+          setCustomPaletteName={setCustomPaletteName}
+          customBgColor={customBgColor}
+          setCustomBgColor={setCustomBgColor}
+          customColors={customColors}
+          handleCustomColorChange={handleCustomColorChange}
+          removeCustomColorInput={removeCustomColorInput}
+          addCustomColorInput={addCustomColorInput}
+          saveCustomPalette={saveCustomPalette}
+        />
+      </SidebarPanel>
+
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 pt-16">
+        <ColorDisplay
+          colors={currentDisplayColors}
+          style={currentStyle}
+          getStyles={getStyles}
+          paletteIndex={currentPaletteIndex}
+        />
+      </div>
     </div>
   );
 }

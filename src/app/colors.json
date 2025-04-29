@@ -1,0 +1,19 @@
+{
+  "palettes": [
+    {
+      "name": "Warm Colors",
+      "bgColor": "#FFF5E6",
+      "colors": ["#FF6B6B", "#FF8E53", "#FFB347", "#FFD166", "#F7DC6F"]
+    },
+    {
+      "name": "Cool Colors",
+      "bgColor": "#E6F7FF",
+      "colors": ["#4ECDC4", "#6BC5D2", "#7ECEFD", "#9BB7D4", "#A5D8FF"]
+    },
+    {
+      "name": "Earth Tones",
+      "bgColor": "#F5F5DC",
+      "colors": ["#8B4513", "#A0522D", "#CD853F", "#D2B48C", "#BC8F8F"]
+    }
+  ]
+}
