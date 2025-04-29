@@ -115,6 +115,7 @@ export default function Home() {
           zIndex: index ? index + 10 : undefined,
           width: "50px",
           height: "50px",
+          borderRadius: "10px",
           backgroundColor: color,
         };
       case "medium-circles":

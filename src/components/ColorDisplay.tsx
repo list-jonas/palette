@@ -18,7 +18,6 @@ export default function ColorDisplay({
   colors,
   style,
   getStyles,
-  paletteIndex,
 }: ColorDisplayProps) {
   return (
     <div className="flex flex-wrap justify-center items-center gap-6">
@@ -26,7 +25,7 @@ export default function ColorDisplay({
         {colors.map((color, index) => (
           <motion.div
             layout
-            key={`${paletteIndex}-${style}-${color}-${index}`}
+            key={`${color}-${index}`}
             style={getStyles(style, color, index, colors.length)}
             initial={{ opacity: 0, scale: 0.5, y: -50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
