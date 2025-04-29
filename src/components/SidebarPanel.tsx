@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
-import CustomPaletteForm from "./CustomPaletteForm";
 
 interface Palette {
   name: string;
