@@ -63,7 +63,7 @@ export default function SidebarPanel({
             Select styles, palettes, or create your own.
           </SheetDescription>
         </SheetHeader>
-        <div className="space-y-6 p-4 mb-auto">
+        <div className="space-y-6 px-4 mb-auto">
           <Accordion
             type="multiple"
             defaultValue={["styles", "palettes"]}

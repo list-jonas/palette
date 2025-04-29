@@ -23,7 +23,13 @@ const STYLES = [
 ];
 
 export default function Home() {
-  const [palettes, setPalettes] = useState<Palette[]>(colorsData.palettes);
+  const [palettes, setPalettes] = useState<Palette[]>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("custom-palettes");
+      if (stored) return JSON.parse(stored);
+    }
+    return colorsData.palettes;
+  });
   const [currentPaletteIndex, setCurrentPaletteIndex] = useState(0);
   const [currentStyle, setCurrentStyle] = useState(STYLES[0]);
   const [isPanelOpen, setIsPanelOpen] = useState(true); // State for Sheet component
@@ -67,15 +73,15 @@ export default function Home() {
     };
     const updatedPalettes = [...palettes, newPalette];
     setPalettes(updatedPalettes);
-    // Optionally select the newly added palette
+    localStorage.setItem("custom-palettes", JSON.stringify(updatedPalettes));
+
     setCurrentPaletteIndex(updatedPalettes.length - 1);
-    // Clear the form
+
     setCustomPaletteName("");
     setCustomBgColor("#ffffff");
-    setCustomColors(["#000000"]);
-    // Maybe close the panel or give feedback
-    alert("Custom palette saved!");
-    // setIsPanelOpen(false); // Optionally close panel after saving
+    setCustomColors(["#cccccc"]);
+
+    setIsPanelOpen(false);
   };
 
   // Ensure currentPaletteIndex is valid when palettes change
@@ -85,7 +91,16 @@ export default function Home() {
     }
   }, [palettes, currentPaletteIndex]);
 
-  const getStyles = (style: string, color: string, index?: number) => {
+  const getStyles = (
+    style: string,
+    color: string,
+    index?: number,
+    size?: number
+  ) => {
+    if (!size) {
+      size = 5;
+    }
+
     switch (style) {
       case "circles":
         return {
@@ -125,7 +140,7 @@ export default function Home() {
           zIndex: index ? index + 10 : undefined,
           marginLeft: "-5vw",
           marginRight: "-5vw",
-          width: "20vw",
+          width: `${20 - size / 2}vw`,
           height: "80vh",
           borderRadius: "10vw",
           backgroundColor: color,

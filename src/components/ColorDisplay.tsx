@@ -8,7 +8,8 @@ interface ColorDisplayProps {
   getStyles: (
     style: string,
     color: string,
-    index?: number
+    index?: number,
+    size?: number
   ) => React.CSSProperties;
   paletteIndex: number;
 }
@@ -26,11 +27,16 @@ export default function ColorDisplay({
           <motion.div
             layout
             key={`${paletteIndex}-${style}-${color}-${index}`}
-            style={getStyles(style, color, index)}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
+            style={getStyles(style, color, index, colors.length)}
+            initial={{ opacity: 0, scale: 0.5, y: -50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 50 }}
+            transition={{
+              duration: 0.2,
+              delay: index * 0.01,
+              type: "spring",
+              stiffness: 100,
+            }}
             whileHover={{ scale: 1.1 }}
           />
         ))}
