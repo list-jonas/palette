@@ -51,7 +51,7 @@ export default function SidebarPanel({
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="fixed right-4 top-4 z-50">
+        <Button variant="secondary" className="fixed right-4 top-4 z-50">
           <MenuIcon className="w-6 h-6" />
         </Button>
       </SheetTrigger>

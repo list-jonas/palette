@@ -245,8 +245,7 @@ export default function Home() {
       {/* Container for top-right buttons */}
       {!isFullscreen && (
         <div className="fixed left-4 top-4 z-50 flex space-x-2">
-          {/* Fullscreen Toggle Button */}
-          <Button variant="ghost" onClick={toggleFullscreen} size="icon">
+          <Button variant="secondary" onClick={toggleFullscreen} size="icon">
             {isFullscreen ? (
               <Minimize className="w-6 h-6" />
             ) : (
