@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import html2canvas from "html2canvas";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Maximize, Minimize } from "lucide-react"; // Import icons
+import { Maximize, Minimize, Download } from "lucide-react";
+import ResolutionPopover from "./ResolutionPopover";
 
 import colorsData from "../app/colors.json";
 import SidebarPanel from "./SidebarPanel";
@@ -34,6 +36,7 @@ const STYLES = [
 ];
 
 export default function PageContent() {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -110,6 +113,56 @@ export default function PageContent() {
   const [isFullscreen, setIsFullscreen] = useState(
     searchParams.get("fullscreen") === "true"
   );
+
+  const handleDownload = async (targetW: number, targetH: number) => {
+    const wrapper = wrapperRef.current!;
+
+    // 1) Hide interactive bits
+    const hidden = [...wrapper.querySelectorAll("button, .bg-popover")].map(
+      (el) => {
+        const prev = (el as HTMLElement).style.display;
+        (el as HTMLElement).style.display = "none";
+        return { el: el as HTMLElement, prev };
+      }
+    );
+
+    // 2) compute scale to fit wrapper into target box
+    const rect = wrapper.getBoundingClientRect();
+    const scaleX = targetW / rect.width;
+    const scaleY = targetH / rect.height;
+    const scale = Math.min(scaleX, scaleY);
+
+    // 3) apply CSS transform
+    wrapper.style.transformOrigin = "top left";
+    wrapper.style.transform = `scale(${scale})`;
+    wrapper.style.width = `${rect.width}px`;
+    wrapper.style.height = `${rect.height}px`;
+
+    // 4) wait a tick for layout to settle
+    await new Promise((r) => requestAnimationFrame(r));
+
+    // 5) capture that wrapper at devicePixelRatio
+    const canvas = await html2canvas(wrapper, {
+      scale: window.devicePixelRatio,
+      useCORS: true,
+      logging: false,
+      allowTaint: true,
+      foreignObjectRendering: true,
+    });
+
+    // 6) restore everything
+    hidden.forEach(({ el, prev }) => (el.style.display = prev));
+    wrapper.style.transform = "";
+    wrapper.style.transformOrigin = "";
+    wrapper.style.width = "";
+    wrapper.style.height = "";
+
+    // 7) download
+    const link = document.createElement("a");
+    link.download = "palette-screenshot.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  };
 
   // State for custom palette creation
   const [customPaletteName, setCustomPaletteName] = useState("");
@@ -475,6 +528,11 @@ export default function PageContent() {
               <Maximize className="w-6 h-6" />
             )}
           </Button>
+          <ResolutionPopover onSelect={handleDownload}>
+            <Button variant="secondary" size="icon">
+              <Download />
+            </Button>
+          </ResolutionPopover>
           {/* Sidebar Panel Trigger - Now inside the conditional container */}
           <SidebarPanel
             isOpen={isPanelOpen}
@@ -504,7 +562,11 @@ export default function PageContent() {
       )}
 
       {/* Rest of the page content */}
-      <div className="flex flex-col items-center justify-center min-h-screen p-8 pt-16">
+      <div
+        className="flex flex-col items-center justify-center min-h-screen p-8 pt-16"
+        ref={wrapperRef}
+        style={{ backgroundColor: currentBgColor }}
+      >
         <ColorDisplay
           colors={currentDisplayColors}
           style={currentStyle}
