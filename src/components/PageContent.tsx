@@ -28,6 +28,9 @@ const STYLES = [
   "medium-circles",
   "big-circles",
   "big-pills",
+  "diamonds",
+  "vertical-pills",
+  "big-diamonds",
 ];
 
 export default function PageContent() {
@@ -293,55 +296,78 @@ export default function PageContent() {
     color: string,
     index?: number,
     size?: number
-  ) => {
-    if (!size) {
-      size = 5;
-    }
+  ): React.CSSProperties => {
+    const baseStyle: React.CSSProperties = {
+      zIndex: index ? index + 10 : undefined,
+      backgroundColor: color,
+    };
+
+    const effectiveSize = size || 5;
 
     switch (style) {
       case "circles":
         return {
-          zIndex: index ? index + 10 : undefined,
+          ...baseStyle,
           width: "50px",
           height: "50px",
           borderRadius: "50%",
-          backgroundColor: color,
         };
       case "cubes":
         return {
-          zIndex: index ? index + 10 : undefined,
+          ...baseStyle,
           width: "50px",
           height: "50px",
           borderRadius: "10px",
-          backgroundColor: color,
         };
       case "medium-circles":
         return {
-          zIndex: index ? index + 10 : undefined,
+          ...baseStyle,
           width: "80px",
           height: "80px",
           borderRadius: "50%",
-          backgroundColor: color,
         };
       case "big-circles":
         return {
-          zIndex: index ? index + 10 : undefined,
+          ...baseStyle,
           marginLeft: "-5vw",
           marginRight: "-5vw",
           width: "30vh",
           aspectRatio: "1/1",
           borderRadius: "50%",
-          backgroundColor: color,
         };
       case "big-pills":
         return {
-          zIndex: index ? index + 10 : undefined,
+          ...baseStyle,
           marginLeft: "-5vw",
           marginRight: "-5vw",
-          width: `${20 - size / 2}vw`,
+          width: `${20 - effectiveSize / 2}vw`,
           height: "80vh",
           borderRadius: "10vw",
-          backgroundColor: color,
+        };
+      case "diamonds":
+        return {
+          ...baseStyle,
+          width: "60px",
+          height: "60px",
+          rotate: "45deg",
+          borderRadius: "10px",
+        };
+      case "big-diamonds":
+        return {
+          ...baseStyle,
+          marginLeft: "-2vw",
+          marginRight: "-2vw",
+          width: "30vh",
+          aspectRatio: "1/1",
+          rotate: "45deg",
+          borderRadius: "10px",
+        };
+      case "vertical-pills":
+        return {
+          ...baseStyle,
+          width: "30px",
+          height: "80px",
+          borderRadius: "15px",
         };
       default:
         return {};
