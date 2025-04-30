@@ -107,7 +107,9 @@ export default function PageContent() {
   });
 
   const [isPanelOpen, setIsPanelOpen] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false); // State for fullscreen mode
+  const [isFullscreen, setIsFullscreen] = useState(
+    searchParams.get("fullscreen") === "true"
+  );
 
   // State for custom palette creation
   const [customPaletteName, setCustomPaletteName] = useState("");
@@ -252,7 +254,7 @@ export default function PageContent() {
     // This effect purely validates the current index against the current palettes array.
   }, [palettes, currentPaletteIndex]);
 
-  // Update URL when palette or style changes
+  // Update URL when palette, style or fullscreen changes
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
 
@@ -286,6 +288,7 @@ export default function PageContent() {
 
     // Handle style parameter
     params.set("style", currentStyle);
+    params.set("fullscreen", isFullscreen.toString());
 
     // Use replace to avoid adding to browser history for every change
     router.replace(`?${params.toString()}`, { scroll: false });
