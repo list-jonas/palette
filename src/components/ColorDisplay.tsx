@@ -33,11 +33,10 @@ export default function ColorDisplay({
         {colors.map((color, index) => (
           <motion.div
             layout
-            key={`${color}-${index}`}
+            key={`${index}`}
             style={getStyles(style, color, index, colors.length)}
-            initial={{ opacity: 0, scale: 0.5, y: -50 }}
+            initial={{ opacity: 0, scale: 0.5, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.5, y: 50 }}
             transition={{
               duration: 0.2,
               delay: index * 0.01,
