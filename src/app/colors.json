@@ -69,6 +69,256 @@
       "name": "Autumn Leaves",
       "bgColor": "#FEF5E7",
       "colors": ["#8B0000", "#D2691E", "#FF8C00", "#FFD700", "#F5DEB3"]
+    },
+    {
+      "name": "Desert Mirage",
+      "bgColor": "#FAF3E0",
+      "colors": ["#C19A6B", "#D4B483", "#EED6A7", "#F6E1B3", "#B97A57", "#8C5E3C"]
+    },
+    {
+      "name": "Cyberpunk Dreams",
+      "bgColor": "#1A1A2E",
+      "colors": ["#FF00F7", "#00FFF7", "#0F3460", "#5C2A9D", "#D800A6", "#08D9D6", "#FF2E63"]
+    },
+    {
+      "name": "Vintage Rose",
+      "bgColor": "#FDF6F0",
+      "colors": ["#A26769", "#CEBEBE", "#EED3D9", "#C9ADA7"]
+    },
+    {
+      "name": "Tropical Fruit",
+      "bgColor": "#FFF9EC",
+      "colors": ["#F94144", "#F3722C", "#F9C74F", "#90BE6D", "#43AA8B", "#577590"]
+    },
+    {
+      "name": "Steel & Smoke",
+      "bgColor": "#EDEDED",
+      "colors": ["#2B2D42", "#4B4E6D", "#8D99AE", "#EDF2F4"]
+    },
+    {
+      "name": "Berry Crush",
+      "bgColor": "#FFF0F5",
+      "colors": ["#8A0253", "#C71585", "#DA70D6", "#FFC0CB"]
+    },
+    {
+      "name": "Stormy Skies",
+      "bgColor": "#E3EAF2",
+      "colors": ["#2C3E50", "#34495E", "#7F8C8D", "#BDC3C7", "#ECF0F1"]
+    },
+    {
+      "name": "Citrus Punch",
+      "bgColor": "#FFFBEA",
+      "colors": ["#FFA500", "#FFDD00", "#E3F09B", "#ACE894", "#61C9A8"]
+    },
+    {
+      "name": "Ink & Paper",
+      "bgColor": "#FDFDFD",
+      "colors": ["#000000", "#1C1C1C", "#595959", "#A6A6A6", "#E0E0E0", "#FFFFFF"]
+    },
+    {
+      "name": "Coral Reef",
+      "bgColor": "#FFF6F3",
+      "colors": ["#FF7F50", "#FF6F61", "#FFADAD", "#FFE0C1", "#FFDAC1"]
+    },
+    {
+      "name": "Frosted Glass",
+      "bgColor": "#F0F4F8",
+      "colors": ["#D0E1F9", "#B0C4DE", "#AEC6CF", "#C9D6DF"]
+    },
+    {
+      "name": "Café Mocha",
+      "bgColor": "#EFE6DD",
+      "colors": ["#4B3832", "#855E42", "#A9746E", "#D7CCC8"]
+    },
+    {
+      "name": "Summer Popsicle",
+      "bgColor": "#FFFCEE",
+      "colors": ["#FF595E", "#FFCA3A", "#8AC926", "#1982C4", "#6A4C93"]
+    },
+    {
+      "name": "Mint Chocolate",
+      "bgColor": "#EAF5E9",
+      "colors": ["#2E8B57", "#3CB371", "#A9DFBF", "#4E342E", "#6D4C41"]
+    },
+    {
+      "name": "Royal Jewel",
+      "bgColor": "#F9F6FF",
+      "colors": ["#3B0A45", "#5D1451", "#892CDC", "#BC6FF1", "#DDA0DD"]
+    },
+    {
+      "name": "Nordic Winter",
+      "bgColor": "#F2F7FA",
+      "colors": ["#5E6472", "#9BA8AB", "#D8E3E7", "#F7F9FB"]
+    },
+    {
+      "name": "Golden Hour",
+      "bgColor": "#FFF5EC",
+      "colors": ["#FFA552", "#FFB870", "#FFD59A", "#FFEEDB", "#F8C8DC"]
+    },
+    {
+      "name": "Bubblegum Pop",
+      "bgColor": "#FFF0F8",
+      "colors": ["#FF69B4", "#FF85A1", "#FFA3C4", "#FFC1E3", "#FFD9EC"]
+    },
+    {
+      "name": "Slate & Sage",
+      "bgColor": "#F4F6F5",
+      "colors": ["#556B6E", "#6C8A84", "#90A896", "#C1DAD6"]
+    },
+    {
+      "name": "Fire & Ash",
+      "bgColor": "#FBEFEF",
+      "colors": ["#9E1B32", "#D7263D", "#FF5700", "#595959", "#2E2E2E"]
+    },
+    {
+      "name": "Jungle Canopy",
+      "bgColor": "#EAF3E2",
+      "colors": ["#355E3B", "#4F7942", "#6B8E23", "#98FB98", "#D0F0C0", "#223D25"]
+    },
+    {
+      "name": "Retro Arcade",
+      "bgColor": "#1B1B3A",
+      "colors": ["#FF00FF", "#00FFFF", "#FFFF00", "#FF5555", "#00FF00", "#FFA500", "#A020F0"]
+    },
+    {
+      "name": "Powder Room",
+      "bgColor": "#FFF4F8",
+      "colors": ["#FFD3DA", "#F7A1C4", "#CDB4DB", "#FFC8DD"]
+    },
+    {
+      "name": "Deep Space",
+      "bgColor": "#0B0C10",
+      "colors": ["#1F2833", "#45A29E", "#66FCF1", "#C5C6C7", "#0B0C10", "#3A4750", "#2C3539"]
+    },
+    {
+      "name": "Terracotta Trail",
+      "bgColor": "#F9F4EF",
+      "colors": ["#B25068", "#D97941", "#F4A261", "#E76F51", "#9C6644", "#C97C5D"]
+    },
+    {
+      "name": "Icy Pastel",
+      "bgColor": "#F3FAFD",
+      "colors": ["#D0F4DE", "#A9DEF9", "#E4C1F9", "#FFDCF4", "#FCF6BD", "#CAFFBF", "#B5EAEA"]
+    },
+    {
+      "name": "Gothic Cathedral",
+      "bgColor": "#EDE7F6",
+      "colors": ["#2B2D42", "#3F3B6C", "#5C5470", "#726A95", "#B8B8D1", "#DCD6F7"]
+    },
+    {
+      "name": "Canyon Dust",
+      "bgColor": "#FDF6F0",
+      "colors": ["#9E6F21", "#C68642", "#E8B47B", "#FAD6A5", "#FBE6C2", "#7A5230"]
+    },
+    {
+      "name": "Cotton Candy Sky",
+      "bgColor": "#FFF5FB",
+      "colors": ["#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFC9", "#BAE1FF", "#D0BBFF"]
+    },
+    {
+      "name": "Aurora Borealis",
+      "bgColor": "#0D1B2A",
+      "colors": ["#1B263B", "#415A77", "#778DA9", "#A8DADC", "#52B788", "#3A86FF", "#2EC4B6"]
+    },
+    {
+      "name": "Midnight Carnival",
+      "bgColor": "#1C0F13",
+      "colors": ["#FF5E79", "#FF9F1C", "#2EC4B6", "#540D6E", "#FF6B6B", "#FFCAD4", "#642CA9"]
+    },
+    {
+      "name": "Solar Flare",
+      "bgColor": "#FFF3E6",
+      "colors": ["#FF9F1C", "#FF6F59", "#FF3C38", "#FF8C42", "#FFD23F", "#F2C94C", "#E85D04"]
+    },
+    {
+      "name": "Pixel Forest",
+      "bgColor": "#EAF6E8",
+      "colors": ["#1B998B", "#2D6A4F", "#52B788", "#74C69D", "#A7C957", "#D4E09B", "#22577A", "#38A3A5"]
+    },
+    {
+      "name": "Dream Vapor",
+      "bgColor": "#F5F0FF",
+      "colors": ["#C3B1E1", "#D291BC", "#F0A6CA", "#F9DEC9", "#FFE1E1", "#E0BBE4", "#D8E2DC"]
+    },
+    {
+      "name": "Toxic Slime",
+      "bgColor": "#0B0F0A",
+      "colors": ["#39FF14", "#A6FF00", "#C1F80A", "#94FFB8", "#76BA1B", "#4CBB17", "#006400"]
+    },
+    {
+      "name": "Sandstorm Mirage",
+      "bgColor": "#FFF8E7",
+      "colors": ["#E1B382", "#C89666", "#A16E83", "#D3A87C", "#FFD8A9", "#F6C28B", "#B88C7D"]
+    },
+    {
+      "name": "Ink Blot",
+      "bgColor": "#F6F6F6",
+      "colors": ["#0B132B", "#1C2541", "#3A506B", "#5BC0BE", "#6FFFE9", "#2E3A59"]
+    },
+    {
+      "name": "Cosmic Candy",
+      "bgColor": "#FEF3FF",
+      "colors": ["#FF61A6", "#FF85F1", "#F4ACFF", "#B388EB", "#A0CED9", "#CDF0EA", "#FFA5AB"]
+    },
+    {
+      "name": "Volcanic Glass",
+      "bgColor": "#1A1A1A",
+      "colors": ["#2E2E2E", "#4E342E", "#5C4033", "#7C3E2D", "#B34700", "#FF6700", "#8B0000"]
+    },
+    {
+      "name": "Dandelion Wine",
+      "bgColor": "#FFFBEF",
+      "colors": ["#F3C969", "#F2D974", "#FCE38A", "#F9AFAE", "#F38181", "#EA907A", "#C37B89"]
+    },
+    {
+      "name": "Electric Aquarium",
+      "bgColor": "#E0FCFF",
+      "colors": ["#00A8E8", "#007EA7", "#003459", "#00F5D4", "#7AE582", "#38B000", "#023E8A"]
+    },
+    {
+      "name": "Rose Gold Afternoon",
+      "bgColor": "#FFF9F6",
+      "colors": ["#B76E79", "#D8A7B1", "#F4C2C2", "#FFDADA", "#FFEAEA", "#EED6D3"]
+    },
+    {
+      "name": "Fungi Kingdom",
+      "bgColor": "#F3F0E0",
+      "colors": ["#3E2F23", "#705D56", "#A69888", "#CEB992", "#FFF1CF", "#E2C275"]
+    },
+    {
+      "name": "Skyline Neon",
+      "bgColor": "#0A0F2C",
+      "colors": ["#FF4D6D", "#F72585", "#B5179E", "#7209B7", "#3A0CA3", "#4361EE", "#4895EF", "#4CC9F0"]
+    },
+    {
+      "name": "Moonstone Magic",
+      "bgColor": "#F5F7FB",
+      "colors": ["#BCCCE0", "#A1B5D8", "#8AAAE5", "#779ECB", "#6A5ACD", "#817C9B"]
+    },
+    {
+      "name": "Dusk Boulevard",
+      "bgColor": "#FFF3F0",
+      "colors": ["#D81159", "#8F2D56", "#218380", "#73D2DE", "#FBB13C", "#F67280"]
+    },
+    {
+      "name": "Marshmallow Whimsy",
+      "bgColor": "#FFF7FA",
+      "colors": ["#FFD6E0", "#FFF0F5", "#EBDFF2", "#DEF3FD", "#D0F4DE", "#FFEDDA"]
+    },
+    {
+      "name": "Obsidian Velvet",
+      "bgColor": "#0D0D0D",
+      "colors": ["#1A1A1A", "#292929", "#3B3B3B", "#4E4E4E", "#5A5A5A", "#666666", "#AAAAAA"]
+    },
+    {
+      "name": "Sunken Treasure",
+      "bgColor": "#E0F7F4",
+      "colors": ["#014F86", "#2C7DA0", "#468FAF", "#61A5C2", "#89C2D9", "#A9D6E5", "#7DCFB6"]
+    },
+    {
+      "name": "Driftwood Escape",
+      "bgColor": "#F8F3EC",
+      "colors": ["#7F675B", "#A49382", "#D6C6B9", "#EEE2DC", "#BCB8B1", "#A68A64", "#F0EAD2"]
     }
   ]
 }
