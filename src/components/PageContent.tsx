@@ -516,7 +516,10 @@ export default function PageContent() {
   return (
     <div
       className="relative min-h-screen transition-colors duration-300 overflow-hidden"
-      style={{ backgroundColor: currentBgColor }}
+      style={{
+        backgroundColor: currentBgColor,
+        transition: ".2s",
+      }}
     >
       {/* Container for top-right buttons */}
       {!isFullscreen && (

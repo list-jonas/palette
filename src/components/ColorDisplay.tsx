@@ -32,16 +32,22 @@ export default function ColorDisplay({
       <AnimatePresence>
         {colors.map((color, index) => (
           <motion.div
-            layout
+            layout="position"
             key={`${index}`}
             style={getStyles(style, color, index, colors.length)}
             initial={{ opacity: 0, scale: 0.5, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{ opacity: 1, scale: 1, y: 0, backgroundColor: color }}
             transition={{
-              duration: 0.2,
-              delay: index * 0.01,
-              type: "spring",
-              stiffness: 100,
+              default: {
+                type: "spring",
+                stiffness: 100,
+                delay: index * 0.01,
+              },
+              backgroundColor: {
+                duration: 0.2,
+                type: "tween",
+                delay: index * 0.01,
+              },
             }}
             whileHover={{ scale: 1.1 }}
             onClick={() => copyToClipboard(color)}
